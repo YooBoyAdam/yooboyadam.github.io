@@ -17,7 +17,8 @@ VA_CENTER = [37.5407, -77.4360]
 
 m = folium.Map(VA_CENTER, zoom_start=7, tiles=None)
 data_2022['locality'] = data_2022['locality'].str.title()
-
+data_2022.loc[data_2022['locality'] == 'Isle Of Wight County', 'locality'] = 'Isle of Wight County'
+data_2022.loc[data_2022['locality'] == 'King And Queen County', 'locality'] = 'King and Queen County'
 
 choropleth = Choropleth(
     geo_data=geo_json,
@@ -32,7 +33,7 @@ choropleth = Choropleth(
 
 tooltip = GeoJsonTooltip(
     fields=['NAME'],  
-    aliases=['Locality:'],
+    aliases=[''],
     style=('background-color:grey;color:white;font-size:medium;padding-left:0px')
 )
 tooltip.add_to(choropleth.geojson)
